@@ -88,9 +88,13 @@ public class DatabaseTest {
                             /* Loop Through ResultSet Columns; Print Values */
 
                             JSONObject row = new JSONObject();
-                            for (int i = 2; i <= columnCount; i++) {
+                            for (int i = 1; i <= columnCount; i++) {
+                                
                                 value = resultset.getString(i);
-                                row.put(metadata.getColumnLabel(i), value);
+                                if(i > 1){row.put(metadata.getColumnLabel(i), value);}
+                                
+                                //intentionally leaving in print statements for convenience in comparison
+                                
                                 if (resultset.wasNull()) {
                                     System.out.format("%20s", "NULL");
                                 }
@@ -126,8 +130,7 @@ public class DatabaseTest {
         catch (Exception e) {
             System.err.println(e.toString());
         }
-        System.out.println();
-        System.out.println(table.toString());
+        
         return table;
     }
     
